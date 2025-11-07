@@ -1,0 +1,65 @@
+"""N=33 用の制御付き modular exponentiation 実装
+
+N=33 (= 3 × 11) の因数分解用の量子回路実装。
+6量子ビットで 0-63 の状態を表現し、|x⟩ → |ax mod 33⟩ を実現。
+
+注意: この実装はユニタリ行列を直接使用するため、ゲート数が多く、
+実機での実行には適していません。教育・シミュレーション目的です。
+"""
+from qiskit import QuantumCircuit
+from qiskit.quantum_info import Operator
+import numpy as np
+
+
+# 定数定義
+N = 33
+FACTORS = (3, 11)
+VALID_BASES = [a for a in range(2, N) if __import__('math').gcd(a, N) == 1]
+N_WORK_QUBITS = 6  # 33 < 2^6
+MAX_DENOMINATOR = 33
+
+
+def c_amod33(a: int, power: int) -> QuantumCircuit:
+    """制御付き a^(2^power) mod 33 の実装
+
+    ユニタリ行列を使用して (a*x) mod 33 の置換を実装します。
+    """
+    if a not in VALID_BASES:
+        raise ValueError(f"a={a} は N={N} に対して無効です（gcd(a,{N})≠1）。有効なベース: {VALID_BASES}")
+
+    U = QuantumCircuit(N_WORK_QUBITS)
+
+    # a^(2^power) mod N を計算
+    for _ in range(power):
+        a = (a * a) % N
+
+    # (a * x) mod 33 の置換行列を作成
+    dim = 2 ** N_WORK_QUBITS
+    matrix = np.zeros((dim, dim))
+
+    for x in range(dim):
+        if x < N:
+            y = (a * x) % N
+            matrix[y, x] = 1
+        else:
+            matrix[x, x] = 1
+
+    # Operator から unitary gate を作成
+    unitary_op = Operator(matrix)
+    U.unitary(unitary_op, range(N_WORK_QUBITS), label=f"{a} mod {N}")
+
+    U = U.to_gate()
+    U.name = f"{a}^{2**power} mod {N}"
+    c_U = U.control()
+    return c_U
+
+
+# レジストリ用の設定
+config = {
+    "n": N,
+    "func": c_amod33,
+    "valid_bases": VALID_BASES,
+    "n_work_qubits": N_WORK_QUBITS,
+    "max_denominator": MAX_DENOMINATOR,
+    "factors": FACTORS,
+}

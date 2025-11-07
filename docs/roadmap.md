@@ -1,65 +1,68 @@
-# RSA × 量子アルゴリズム実験ロードマップ
+# 実験ロードマップ
 
-## Ⅰ. 理論フェーズ（理解と設計）
+このプロジェクトは、Shor アルゴリズムによる RSA 因数分解を、理論から実装・実機検証まで段階的に進めることを目的としています。
 
-目的: Shor アルゴリズムと RSA の数理を完全に理解し、自分の言葉で説明できる状態を作る。
+## Phase 1: 理論と基礎実装
 
-- RSA 原理復習（鍵生成／暗号化／復号、mod 演算）
-- Shor の位相推定・可逆 mod-exp・連分数解析の整理
-- Pollard's Rho / Quadratic Sieve など古典因数分解との比較
-- 既存研究：Gidney らのリソース見積もり、Yan らの 48bit 実験、Ekerå の資源削減法
+**目標**: Shor アルゴリズムの数理と実装の基礎を確立
 
-## Ⅱ. ローカルフェーズ（設計と検証）
+- RSA と古典因数分解アルゴリズムの復習
+- Shor アルゴリズムの構成要素（量子位相推定、mod-exp、連分数展開）の理解
+- N=15 での量子回路実装と動作検証
+- 古典版との比較実装
 
-目的: Qiskit で小規模 Shor を実装し、挙動と限界を体感する。
+**成果物**: 動作する実装、アルゴリズム解説ドキュメント
 
-1. N=15 版 Shor を QASM シミュレータで実行、成功率ログ化
-2. N=21, 33, 35, 77… と段階的に拡張、ショット数と成功率を取得
-3. ノイズモデル導入 → 誤り緩和テクニックを試す
-4. Pollard's Rho など古典アルゴリズムと同じ N で比較
-5. 成功率／ショット数／ゲート数を Matplotlib で可視化
+## Phase 2: スケールアップと最適化
 
-アウトプット: 「Shor アルゴリズムを Python で完全理解する（仮）」記事草案、ログデータ、グラフ。
+**目標**: より大きな N への拡張と性能評価
 
-## Ⅲ. AWS フェーズ（実機／シミュレーション）
+- N=21, 33, 35, 77 への段階的拡張
+- ショット数・成功率・ゲート数の測定と可視化
+  - `src/quantum_rsa/experiment_logging.py` で DataFrame ロギング & `notebooks/shots_vs_success.ipynb` で可視化済み
+- ノイズモデルの導入と誤り緩和技術の検証
+  - Aer の depolarizing + readout ノイズ、readout mitigation ワークフローを追加（ideal/noisy/noisy+mitigated 比較）
+  - 現状は `apply_readout_mitigation=True` のたびに `2**n_count` 個のキャリブレーション回路を毎回生成 → (n_count, noise_model) ごとに再利用できるようキャッシュ仕組みを追加予定
+- 古典アルゴリズムとのベンチマーク比較
 
-目的: AWS Braket (SV1 → 安価 QPU → IonQ) で実行し、コストと成功率を把握。
+**成果物**: 性能データ、グラフ、Jupyter ノートブック
 
-- Braket 環境構築、SV1 でローカル回路を検証
-- Rigetti / IQM など安価 QPU でノイズとショット単価を評価
-- IonQ 実機で N=15/21/33 の成功率を測る（ショット最適化）
+## Phase 3: 実機検証
 
-アウトプット: タスク ID、ショット数、コスト、成功確率の一覧表。
+**目標**: クラウド量子コンピュータでの実行
 
-## Ⅳ. 改良フェーズ（自作アルゴリズム化）
+- AWS Braket 環境構築
+- SV1 シミュレータでの回路検証
+- QPU（Rigetti/IQM/IonQ）での実行とコスト測定
+- 実機特有のノイズ・エラー特性の分析
 
-- mod-exp 回路のゲート削減、位相推定の近似化
-- 古典前処理 + 量子後処理のハイブリッド案
-- ログデータを用いた成功率・回路深さの統計
+**成果物**: 実機実行ログ、コスト分析、成功率データ
 
-目標: 10 量子ビット以内で N=33〜48bit 級を攻略、ゲート数/ショット数/成功率の比較表を作成。
+## Phase 4: 回路最適化
 
-## Ⅴ. 公開フェーズ（アウトプット・発信）
+**目標**: より効率的な量子回路の設計
 
-- 技術ブログ・Qiita・Zenn で記事化（成功率×ショット×コスト表付き）
-- GitHub でノートブック公開、README に理論概要を記載
-- Yan らや Gidney らとの比較記事
+- mod-exp 回路のゲート削減
+- 量子/古典ハイブリッドアプローチの検討
+- 既存研究（Gidney, Yan, Ekerå 等）との比較
+- 限られた量子ビットでの最大 N の探索
 
-## Ⅵ. 発展フェーズ（次のテーマ）
+**成果物**: 最適化された回路、比較表、技術レポート
 
-- Variational Quantum Factoring, QAOA, DCQF など別系統手法
-- TensorFlow Quantum などを使ったハイブリッド最適化
-- PQC (Kyber, Dilithium) 実装検証や攻撃シナリオ研究
+## Phase 5: 発展的トピック
+
+**目標**: 関連技術への展開
+
+- 他の量子因数分解手法（VQF, QAOA, DCQF）の検証
+- ポスト量子暗号（Kyber, Dilithium）との比較研究
+- ハイブリッド量子古典最適化の探索
+
+**成果物**: 調査レポート、実験結果
 
 ---
 
-### 進捗トラッキングの例
+## 参考文献
 
-| フェーズ | 状態 | メモ |
-| --- | --- | --- |
-| 理論 | 🔄 進行中 | 論文要約中 |
-| ローカル | ⏳ 未着手 | N=15 ノートブック作成予定 |
-| AWS | ⏳ 未着手 | Braket 資料読み込み |
-| 改良 | ⏳ 未着手 | mod-exp 最適化案調査 |
-| 公開 | ⏳ 未着手 | 成果物フォーマット検討 |
-| 発展 | ⏳ 未着手 | TFQ + VQF の資料収集中 |
+- **Shor (1994)**: "Algorithms for quantum computation: discrete logarithms and factoring"
+- **Gidney & Ekerå (2021)**: "How to factor 2048 bit RSA integers in 8 hours using 20 million noisy qubits"
+- **Yan et al. (2022)**: "Factoring integers with sublinear resources on a superconducting quantum processor"
