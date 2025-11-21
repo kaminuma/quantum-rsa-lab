@@ -7,12 +7,13 @@ from typing import Optional, Sequence
 
 import pandas as pd
 
-from .shor_demo import DEFAULT_N_COUNT, run_shor
+from .runner import DEFAULT_N_COUNT, run_shor
 
 try:  # pragma: no cover - typing 補助用
     from qiskit_aer.noise import NoiseModel
 except ImportError:  # pragma: no cover
-    NoiseModel = object  # type: ignore[misc,assignment]
+    from typing import Any
+    NoiseModel = Any  # type: ignore[misc,assignment]
 
 
 @dataclass(frozen=True)
@@ -114,9 +115,13 @@ def summarize_success(df: pd.DataFrame) -> pd.DataFrame:
 
 
 def _merge_dicts(base: Optional[dict], extra: Optional[dict]) -> Optional[dict]:
+    """2つの辞書をマージする。両方がNoneの場合のみNoneを返す。
+
+    NOTE: 空辞書{}はFalsyだが、有効な値として扱う。
+    """
     if base is None and extra is None:
         return None
-    merged = dict(base or {})
-    if extra:
+    merged = dict(base if base is not None else {})
+    if extra is not None:
         merged.update(extra)
-    return merged
+    return merged if merged else None  # 空辞書の場合はNoneを返す

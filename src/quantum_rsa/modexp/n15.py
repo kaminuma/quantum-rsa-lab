@@ -43,34 +43,36 @@ def c_amod15(a: int, power: int) -> QuantumCircuit:
     U = QuantumCircuit(N_WORK_QUBITS)
 
     # a^(2^power) mod N を計算
+    # NOTE: 入力パラメータを上書きしないようローカル変数を使用
+    a_power = a
     for _ in range(power):
-        a = (a * a) % N
+        a_power = (a_power * a_power) % N
 
     # 各 a の値に対する変換を SWAP/CNOT で実装
-    if a == 1:
+    if a_power == 1:
         pass  # 恒等変換
-    elif a == 2:
+    elif a_power == 2:
         U.swap(0, 3)
         U.swap(1, 3)
         U.swap(2, 3)
-    elif a == 4:
+    elif a_power == 4:
         U.swap(0, 2)
         U.swap(1, 3)
-    elif a == 7:
+    elif a_power == 7:
         U.swap(2, 3)
         U.swap(1, 3)
         U.swap(2, 3)
         U.cx(3, 2)
         U.cx(3, 1)
         U.cx(3, 0)
-    elif a == 8:
+    elif a_power == 8:
         U.swap(0, 3)
         U.swap(1, 3)
         U.swap(0, 3)
-    elif a == 11:
+    elif a_power == 11:
         U.swap(0, 3)
         U.swap(1, 2)
-    elif a == 13:
+    elif a_power == 13:
         U.swap(2, 3)
         U.swap(1, 3)
         U.swap(0, 3)

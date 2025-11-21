@@ -6,6 +6,8 @@ N=33 (= 3 × 11) の因数分解用の量子回路実装。
 注意: この実装はユニタリ行列を直接使用するため、ゲート数が多く、
 実機での実行には適していません。教育・シミュレーション目的です。
 """
+from math import gcd
+
 from qiskit import QuantumCircuit
 from qiskit.quantum_info import Operator
 import numpy as np
@@ -14,7 +16,7 @@ import numpy as np
 # 定数定義
 N = 33
 FACTORS = (3, 11)
-VALID_BASES = [a for a in range(2, N) if __import__('math').gcd(a, N) == 1]
+VALID_BASES = [a for a in range(2, N) if gcd(a, N) == 1]
 N_WORK_QUBITS = 6  # 33 < 2^6
 MAX_DENOMINATOR = 33
 
@@ -30,8 +32,10 @@ def c_amod33(a: int, power: int) -> QuantumCircuit:
     U = QuantumCircuit(N_WORK_QUBITS)
 
     # a^(2^power) mod N を計算
+    # NOTE: 入力パラメータを上書きしないようローカル変数を使用
+    a_power = a
     for _ in range(power):
-        a = (a * a) % N
+        a_power = (a_power * a_power) % N
 
     # (a * x) mod 33 の置換行列を作成
     dim = 2 ** N_WORK_QUBITS
@@ -39,14 +43,14 @@ def c_amod33(a: int, power: int) -> QuantumCircuit:
 
     for x in range(dim):
         if x < N:
-            y = (a * x) % N
+            y = (a_power * x) % N
             matrix[y, x] = 1
         else:
             matrix[x, x] = 1
 
     # Operator から unitary gate を作成
     unitary_op = Operator(matrix)
-    U.unitary(unitary_op, range(N_WORK_QUBITS), label=f"{a} mod {N}")
+    U.unitary(unitary_op, range(N_WORK_QUBITS), label=f"{a}^{2**power} mod {N}")
 
     U = U.to_gate()
     U.name = f"{a}^{2**power} mod {N}"
