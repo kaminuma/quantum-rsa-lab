@@ -1,6 +1,7 @@
 __pycache__/
 *.pyc
 .env
+.env.*
 .venv/
 .ipynb_checkpoints/
 .envrc
@@ -10,3 +11,25 @@ __pycache__/
 *.log
 results/
 *.output.ipynb
+*.ipynb
+notebooks/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+coverage.xml
+dist/
+build/
+*.egg-info/
+.tox/
+.nox/
+.python-version
+.tool-versions
+.vscode/
+.idea/
+
+# Experiment logs (contain AWS account IDs)
+logs/
+
+# Claude Code local config
+.claude/

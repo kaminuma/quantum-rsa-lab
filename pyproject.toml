@@ -19,6 +19,15 @@ dependencies = [
 [project.optional-dependencies]
 aws = [
   "amazon-braket-sdk>=1.82",
+  "qiskit-braket-provider>=0.4",
+]
+ibm = [
+  "qiskit-ibm-runtime>=0.20",
+]
+hardware = [
+  "amazon-braket-sdk>=1.82",
+  "qiskit-braket-provider>=0.4",
+  "qiskit-ibm-runtime>=0.20",
 ]
 
 [tool.setuptools.packages.find]
