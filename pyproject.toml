@@ -13,6 +13,7 @@ dependencies = [
   "numpy>=1.26",
   "pandas>=2.2",
   "jupyterlab>=4.2",
+  "typer>=0.9.0",
 ]
 
 [project.optional-dependencies]

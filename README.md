@@ -47,7 +47,8 @@ cd quantum-rsa-lab
 
 # 仮想環境を作成
 python -m venv .venv
-source .venv/bin/activate  # Windows: .venv\Scripts\activate
+source .venv/bin/activate  
+# Windows: .venv\Scripts\activate
 
 # 依存パッケージをインストール
 pip install -r requirements.txt
