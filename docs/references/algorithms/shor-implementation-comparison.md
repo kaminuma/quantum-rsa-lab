@@ -2,7 +2,7 @@
 
 ## 私たちの実装 vs 他の手法
 
-### 私たちの実装（quantum-rsa-lab）
+### 私たちの実装（quantum-crypto-lab）
 
 ```
 手法: 非反復型 QPE + Full QFT

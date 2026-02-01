@@ -1,7 +1,10 @@
-# Quantum RSA Lab
+# Quantum Crypto Lab
 
-本プロジェクトは、Shorアルゴリズムを実際の量子コンピュータ上でどこまで実行できるかを、回路複雑性と成功率の関係に着目して実験的に検証することを目的としています。
+本プロジェクトは、量子暗号プロトコル（Shorアルゴリズム、QKD等）を実際の量子コンピュータ上で実験的に検証することを目的としています。
 
+## 現在の実装
+
+### Shorアルゴリズム（因数分解）
 小さな合成数（N=21, 35）の因数分解を対象に、異なる基数選択・回路構成での比較実験を行いました。
 
 ## 主な実験
@@ -34,7 +37,7 @@
 ## プロジェクト構成
 
 ```
-quantum-rsa-lab/
+quantum-crypto-lab/
 ├── src/quantum_rsa/
 │   ├── shor_demo.py          # Shor アルゴリズム実装
 │   ├── modexp/               # N別の最適化回路
@@ -54,7 +57,7 @@ quantum-rsa-lab/
 
 ```bash
 git clone <repo-url>
-cd quantum-rsa-lab
+cd quantum-crypto-lab
 
 python -m venv .venv
 source .venv/bin/activate

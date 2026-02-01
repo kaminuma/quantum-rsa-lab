@@ -1,6 +1,6 @@
 ---
 title: "N=35 因数分解における最適基数選択: a=6, 周期 r=2 の理論的解析"
-authors: quantum-rsa-lab
+authors: quantum-crypto-lab
 date: 2026-01-31
 ---
 

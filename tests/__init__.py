@@ -1,1 +1,1 @@
-"""Test suite for quantum-rsa-lab."""
+"""Test suite for quantum-crypto-lab."""

@@ -3,9 +3,9 @@ requires = ["setuptools>=68", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "quantum-rsa-lab"
+name = "quantum-crypto-lab"
 version = "0.1.0"
-description = "RSA × 量子アルゴリズム実験のためのラボ"
+description = "量子暗号プロトコル実験のためのラボ（Shorアルゴリズム・QKD等）"
 requires-python = ">=3.10"
 dependencies = [
   "qiskit==1.2.4",

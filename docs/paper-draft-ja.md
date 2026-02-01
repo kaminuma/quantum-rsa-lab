@@ -412,13 +412,13 @@ Rigetti Ankaa-3での実機実験により：
 実験に使用したコードは以下のリポジトリで公開：
 
 ```
-https://github.com/kaminuma/quantum-rsa-lab
+https://github.com/kaminuma/quantum-crypto-lab
 ```
 
 ### A.2 主要ファイル
 
 ```
-quantum-rsa-lab/
+quantum-crypto-lab/
 ├── src/quantum_rsa/modexp/
 │   ├── n21_optimized.py      # N=21回路
 │   ├── n35_a6_optimized.py   # N=35 a=6回路
