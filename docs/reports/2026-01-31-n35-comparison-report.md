@@ -500,7 +500,7 @@ Leakage検定は「サポート保持の強さ」のみを評価する検定で�
 
 ```
 quantum-crypto-lab/
-├── src/quantum_rsa/modexp/
+├── src/quantum_crypto/modexp/
 │   ├── n35_a6_optimized.py  # a=6回路
 │   └── n35_a8_optimized.py  # a=8回路
 ├── scripts/
