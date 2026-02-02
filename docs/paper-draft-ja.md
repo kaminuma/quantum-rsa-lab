@@ -311,8 +311,6 @@ a=6（r=2）を選択することで：
 - ノイズの影響を最小限に抑えられる
 - 結果として高いSupport Massが得られる
 
-この基数選択は、少なくとも我々が確認した主要な公開実験報告では見当たらなかった。
-
 ### 5.3 a=8の結果についての解釈
 
 a=8（r=4）のSupport Massは47.6%であった。完全に一様な分布であればサポート/非サポートの差は期待されず、Support Massの期待値は50%である。本実験ではそれに近い値が観測された（Off-support mass ≈ 52%）。
@@ -419,7 +417,7 @@ https://github.com/kaminuma/quantum-crypto-lab
 
 ```
 quantum-crypto-lab/
-├── src/quantum_rsa/modexp/
+├── src/quantum_crypto/modexp/
 │   ├── n21_optimized.py      # N=21回路
 │   ├── n35_a6_optimized.py   # N=35 a=6回路
 │   └── n35_a8_optimized.py   # N=35 a=8回路

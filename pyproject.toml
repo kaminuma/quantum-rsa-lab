@@ -29,6 +29,18 @@ hardware = [
   "qiskit-braket-provider>=0.4",
   "qiskit-ibm-runtime>=0.20",
 ]
+pqc = [
+  "liboqs-python>=0.10.0",
+  "cryptography>=43.0",
+]
+all = [
+  "amazon-braket-sdk>=1.82",
+  "qiskit-braket-provider>=0.4",
+  "qiskit-ibm-runtime>=0.20",
+  "liboqs-python>=0.10.0",
+  "cryptography>=43.0",
+  "qiskit-aer>=0.15.0",
+]
 
 [tool.setuptools.packages.find]
 where = ["src"]
