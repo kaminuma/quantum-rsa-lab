@@ -46,9 +46,9 @@ export AWS_DEFAULT_REGION=us-east-1
 ### 使用方法
 
 ```python
-from quantum_rsa.backends import AWSBraketBackend
-from quantum_rsa.algorithms import QuantumShor
-from quantum_rsa.modexp import get_config
+from quantum_crypto.backends import AWSBraketBackend
+from quantum_crypto.algorithms import QuantumShor
+from quantum_crypto.modexp import get_config
 
 # バックエンドを初期化
 backend = AWSBraketBackend(device="ionq_aria")
@@ -134,18 +134,18 @@ result = run_shor(77, method='quantum', shots=1000)
 #!/usr/bin/env python3
 """実機でShorのアルゴリズムを実行"""
 
-from quantum_rsa.runner import run_shor
+from quantum_crypto.runner import run_shor
 
 # AWS Braket
 # pip install amazon-braket-sdk
 # aws configure
 
-from quantum_rsa.backends import AWSBraketBackend
+from quantum_crypto.backends import AWSBraketBackend
 backend = AWSBraketBackend(device="sv1")  # まずシミュレータで
 
 # N=15で実行
-from quantum_rsa.algorithms import QuantumShor
-from quantum_rsa.modexp import get_config
+from quantum_crypto.algorithms import QuantumShor
+from quantum_crypto.modexp import get_config
 
 shor = QuantumShor()
 config = get_config(15)

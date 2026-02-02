@@ -162,7 +162,7 @@ s = 2: φ = 2/3 = 0.667  → 測定値 |101⟩ or |110⟩
 ## シミュレーション結果
 
 ```python
-from quantum_rsa.modexp.n21_optimized import build_full_circuit_n21
+from quantum_crypto.modexp.n21_optimized import build_full_circuit_n21
 from qiskit_aer import AerSimulator
 
 qc = build_full_circuit_n21()
@@ -224,7 +224,7 @@ N = 21
 
 ```python
 # 最適化回路を直接使用
-from quantum_rsa.modexp.n21_optimized import (
+from quantum_crypto.modexp.n21_optimized import (
     build_full_circuit_n21,
     config_optimized
 )
@@ -260,6 +260,6 @@ counts = job.result().get_counts()
 
 ## 参考ファイル
 
-- 実装コード: [src/quantum_rsa/modexp/n21_optimized.py](../../../src/quantum_rsa/modexp/n21_optimized.py)
+- 実装コード: [src/quantum_crypto/modexp/n21_optimized.py](../../../src/quantum_crypto/modexp/n21_optimized.py)
 - 論文要約: [papers/shor-n21-skosana-2021.md](../papers/shor-n21-skosana-2021.md)
 - Margolus gate: [margolus-gate.md](margolus-gate.md)

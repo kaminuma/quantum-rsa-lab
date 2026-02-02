@@ -82,7 +82,7 @@
 # 例: N=21の最適化実装を参照したい場合
 # 1. circuits/n21-optimized-circuit.md を読む
 # 2. papers/shor-n21-skosana-2021.md で理論背景を確認
-# 3. src/quantum_rsa/modexp/n21_optimized.py のコードを参照
+# 3. src/quantum_crypto/modexp/n21_optimized.py のコードを参照
 ```
 
 ## 更新履歴

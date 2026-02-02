@@ -28,7 +28,7 @@ try:
 except ImportError:
     QISKIT_AVAILABLE = False
 
-from src.quantum_rsa.modexp import get_config, list_supported
+from src.quantum_crypto.modexp import get_config, list_supported
 
 
 @pytest.mark.skipif(not QISKIT_AVAILABLE, reason="Qiskit required")
@@ -195,7 +195,7 @@ class TestN15ModExp:
         このテストは量子シミュレータを使用するため、
         実行時間が長くなります（各ケース数秒）。
         """
-        from src.quantum_rsa import run_shor
+        from src.quantum_crypto import run_shor
 
         # N=15, 複数のベースで因数分解が成功することを確認
         # これにより、modexp実装が正しく動作していることが検証される

@@ -199,7 +199,7 @@ r=3 は奇数なので、通常は失敗...
 ## このリポジトリの実装
 
 ```python
-from quantum_rsa.runner import run_shor
+from quantum_crypto.runner import run_shor
 
 # 古典版（周期をループで計算）
 result = run_shor(15, method='classical')

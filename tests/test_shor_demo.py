@@ -12,13 +12,13 @@
 """
 
 import pytest
-from src.quantum_rsa.utils import (
+from src.quantum_crypto.utils import (
     gcd,
     factor_from_period,
     find_period_from_phase,
 )
-from src.quantum_rsa.algorithms.classical import ClassicalShor
-from src.quantum_rsa.runner import run_shor
+from src.quantum_crypto.algorithms.classical import ClassicalShor
+from src.quantum_crypto.runner import run_shor
 
 
 class TestGCD:

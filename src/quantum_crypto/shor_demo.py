@@ -22,9 +22,9 @@ except ImportError:
     # Handle standalone execution
     from pathlib import Path
     sys.path.insert(0, str(Path(__file__).parent.parent))
-    from quantum_rsa.core import ShorResult
-    from quantum_rsa.algorithms import ClassicalShor, QuantumShor
-    from quantum_rsa.runner import run_shor
+    from quantum_crypto.core import ShorResult
+    from quantum_crypto.algorithms import ClassicalShor, QuantumShor
+    from quantum_crypto.runner import run_shor
 
 
 app = typer.Typer(help="Quantum RSA Lab - Shor's Algorithm Experiment CLI")

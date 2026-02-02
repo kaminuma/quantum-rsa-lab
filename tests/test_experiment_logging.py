@@ -20,7 +20,7 @@ try:
 except ImportError:
     QISKIT_AVAILABLE = False
 
-from src.quantum_rsa.experiment_logging import (
+from src.quantum_crypto.experiment_logging import (
     QuantumRunSetting,
     sweep_shot_counts,
     summarize_success,

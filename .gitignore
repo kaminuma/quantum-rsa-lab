@@ -33,3 +33,23 @@ logs/
 
 # Claude Code local config
 .claude/
+
+# Generated figures
+docs/figures/
+
+# Paper drafts
+docs/paper-*
+
+# liboqs build artifacts (if building locally)
+liboqs/
+liboqs-build/
+
+# Benchmark results (may contain timing info)
+benchmark-*.json
+pqc-benchmark-*.json
+grover-attack-*.json
+
+# Secrets/credentials (just in case)
+*.pem
+*.key
+secrets/
