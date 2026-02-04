@@ -42,12 +42,12 @@ from braket.aws import AwsDevice
 from braket.circuits import Circuit
 
 # プロジェクトモジュールからのインポート
-from quantum_rsa.modexp.n35_a6_optimized import (
+from quantum_crypto.modexp.n35_a6_optimized import (
     config as config_a6,
     get_expected_phases as get_expected_phases_a6,
     build_circuit_braket as build_circuit_braket_a6,
 )
-from quantum_rsa.modexp.n35_a8_optimized import (
+from quantum_crypto.modexp.n35_a8_optimized import (
     config as config_a8,
     get_expected_phases as get_expected_phases_a8,
     build_circuit_braket as build_circuit_braket_a8,

@@ -157,7 +157,7 @@ q1: ──────────────(U² circuit)───(U⁴ circui
 ## 実装コード（このリポジトリ）
 
 ```python
-from quantum_rsa.modexp.n21_optimized import build_full_circuit_n21
+from quantum_crypto.modexp.n21_optimized import build_full_circuit_n21
 
 qc = build_full_circuit_n21()
 # 5量子ビット、深度35の最適化回路

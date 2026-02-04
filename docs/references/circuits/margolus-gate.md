@@ -209,4 +209,4 @@ N=21のShor回路での比較:
 
 - Maslov, D. "Advantages of using relative-phase Toffoli gates" (2016)
 - Skosana & Tame, Scientific Reports 11, 16599 (2021)
-- [このリポジトリの実装](../../../src/quantum_rsa/modexp/n21_optimized.py)
+- [このリポジトリの実装](../../../src/quantum_crypto/modexp/n21_optimized.py)
