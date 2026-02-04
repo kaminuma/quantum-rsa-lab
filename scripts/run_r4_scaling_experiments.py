@@ -32,7 +32,7 @@ import os
 from datetime import datetime
 from fractions import Fraction
 from math import gcd
-from typing import Dict, List, Optional
+from typing import Dict, Optional
 
 import numpy as np
 import sys
