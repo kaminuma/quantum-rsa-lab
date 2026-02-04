@@ -2,7 +2,6 @@
 """Generate Support Mass vs 2Q Gate Count figure for arXiv paper."""
 
 import matplotlib.pyplot as plt
-import numpy as np
 
 # Data
 data = {
